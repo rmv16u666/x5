@@ -6,6 +6,8 @@ import Authors from './features/Authors';
 import Books from './features/Books';
 import React, { Fragment } from 'react';
 import {createBrowserHistory} from 'history';
+import NavBar from './layout/NavBar';
+import { Container } from 'semantic-ui-react';
 
 export const history = createBrowserHistory();
 
@@ -20,6 +22,8 @@ function App() {
 
   return (
     <Fragment>
+      <NavBar />
+      <Container>
       <Router history={history} >
         <Switch>
           <Route path='/' component={Home} exact />
@@ -28,6 +32,7 @@ function App() {
           <Route path='/authors' component={Authors} />          
         </Switch>
       </Router >
+      </Container>
     </Fragment>
   );
 
