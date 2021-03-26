@@ -1,0 +1,8 @@
+input UserLoginForm {
+    login: String!
+    password: String!
+}
+
+type AuthToken {
+    token: String!
+}
