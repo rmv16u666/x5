@@ -1,11 +1,9 @@
 import React from 'react';
 import { gql, useLazyQuery } from '@apollo/react-hooks';
 import { history } from '../App';
-import { Grid, Button, Input, Container, Form } from 'semantic-ui-react';
+import { Grid, Button, Input, Container, Form, Label } from 'semantic-ui-react';
 
-function LoginForm() {    
-    let login;
-    let password;
+function LoginForm() {  
 
     const LOGIN = gql`
         query login($login: String!, $password: String!) {
@@ -15,12 +13,7 @@ function LoginForm() {
             }
         }`;
 
-    const [doLogin, {loading, data}] = useLazyQuery(LOGIN, {
-        variables: {
-            login,
-            password
-        }
-    });
+    const [doLogin, {loading, data, error}] = useLazyQuery(LOGIN);
 
     if (data && data.login) {
         console.log(data.login.token);
@@ -39,6 +32,9 @@ function LoginForm() {
         backgroundColor: "white",
     }
 
+    if (error)
+        console.log(error);
+
     return (
         <div style={styles}>
             <Container style={{ marginTop: '10em' }}>
@@ -46,12 +42,12 @@ function LoginForm() {
                     <Grid>
                         <Grid.Row centered>
                             <Grid.Column width={4} >
-                                <Input type="text" placeholder="login" onChange={ (e) => login = e.target.value }></Input>
+                                <Input type="text" placeholder="login" ></Input>
                             </Grid.Column>
                         </Grid.Row>
                         <Grid.Row centered>
                             <Grid.Column width={4} >
-                            <Input type="password" placeholder="password" onChange={(e) => password = e.target.value} ></Input>
+                            <Input type="password" placeholder="password" ></Input>
                             </Grid.Column>
                         </Grid.Row>
                         <Grid.Row centered>
@@ -59,8 +55,16 @@ function LoginForm() {
                                 <Button positive type="submit" >login</Button>
                             </Grid.Column>
                         </Grid.Row>
+                        <Grid.Row centered>
+                            <Grid.Column width={4} >
+                                {error && (
+                                    <Label color='red' >Failed to log in.</Label>
+                                )}
+                            </Grid.Column>
+                        </Grid.Row>
                     </Grid>
                 </Form>
+                
             </Container>
         </div>
         
