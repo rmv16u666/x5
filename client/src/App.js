@@ -1,18 +1,24 @@
 import './App.css';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import LoginForm from './features/LoginForm';
 import Home from './features/Home';
 import React, { Fragment } from 'react';
+import {createBrowserHistory} from 'history';
 
-function App() {
+export const history = createBrowserHistory();
 
+
+
+function App() { 
 
   return (
     <Fragment>
-      <BrowserRouter>
-        <Route path='/' component={Home} exact />
-        <Route path='/login' component={LoginForm} />
-      </BrowserRouter>
+      <Router history={history} >
+        <Switch>
+          <Route path='/' component={Home} exact />
+          <Route path='/login' component={LoginForm} />
+        </Switch>
+      </Router >
     </Fragment>
   );
 

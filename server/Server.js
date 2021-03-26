@@ -37,12 +37,15 @@ const allBooks = [
 ];
 
 const TOKEN = "auth_token";
+const LOGIN = "Admin";
+const PASSWORD = "Admin";
 
 const root = {
 	login: (args, request) => {	
-		console.log(request.headers["authorization"])
-		throw new error();	
-		return {token:'auth_token'};
+		if (args.login === LOGIN && args.password === PASSWORD)
+			return {token:TOKEN, userName:'admin'};
+		else
+			return error();
 	}
 };
 

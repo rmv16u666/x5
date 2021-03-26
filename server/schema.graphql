@@ -1,8 +1,13 @@
-input UserLoginForm {
+input UserCredentials {
     login: String!
     password: String!
 }
 
 type AuthToken {
     token: String!
+    userName: String!
+}
+
+type Query {
+    login(login: String!, password: String!): AuthToken!
 }
