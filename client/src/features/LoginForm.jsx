@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { gql, useLazyQuery } from '@apollo/react-hooks';
 import { history } from '../App';
-import { Grid, Button, Input, Container } from 'semantic-ui-react';
+import { Grid, Button, Input, Container, Form } from 'semantic-ui-react';
 
 function LoginForm() {    
     let login;
@@ -42,23 +42,25 @@ function LoginForm() {
     return (
         <div style={styles}>
             <Container style={{ marginTop: '10em' }}>
-                <Grid>
-                    <Grid.Row centered>
-                        <Grid.Column width={4} >
-                            <Input type="text" onChange={ (e) => login = e.target.value }></Input>
-                        </Grid.Column>
-                    </Grid.Row>
-                    <Grid.Row centered>
-                        <Grid.Column width={4} >
-                        <Input type="password" onChange={(e) => password = e.target.value} ></Input>
-                        </Grid.Column>
-                    </Grid.Row>
-                    <Grid.Row centered>
-                        <Grid.Column width={4} >
-                            <Button positive onClick={ () => doLogin( { variables: {login: login, password: password} } )}>login</Button>
-                        </Grid.Column>
-                    </Grid.Row>
-                </Grid>
+                <Form onSubmit={ (e) => { doLogin( { variables: {login: e.target[0].value, password: e.target[1].value} } ) }  }>
+                    <Grid>
+                        <Grid.Row centered>
+                            <Grid.Column width={4} >
+                                <Input type="text" placeholder="login" onChange={ (e) => login = e.target.value }></Input>
+                            </Grid.Column>
+                        </Grid.Row>
+                        <Grid.Row centered>
+                            <Grid.Column width={4} >
+                            <Input type="password" placeholder="password" onChange={(e) => password = e.target.value} ></Input>
+                            </Grid.Column>
+                        </Grid.Row>
+                        <Grid.Row centered>
+                            <Grid.Column width={4} >
+                                <Button positive type="submit" >login</Button>
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
+                </Form>
             </Container>
         </div>
         
