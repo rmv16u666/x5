@@ -21,7 +21,9 @@ function App() {
   }
 
   return (
+    
     <Fragment>
+      
       <Router history={history} >
         <NavBar />
         <Container style={{ marginTop: '7em' }}>
@@ -33,7 +35,6 @@ function App() {
           </Switch>
         </Container>
       </Router >
-      
     </Fragment>
   );
 
