@@ -22,17 +22,18 @@ function App() {
 
   return (
     <Fragment>
-      <NavBar />
-      <Container>
       <Router history={history} >
-        <Switch>
-          <Route path='/' component={Home} exact />
-          <Route path='/login' component={LoginForm} />
-          <Route path='/books' component={Books} />
-          <Route path='/authors' component={Authors} />          
-        </Switch>
+        <NavBar />
+        <Container style={{ marginTop: '7em' }}>
+          <Switch>
+            <Route path='/' component={Home} exact />
+            <Route path='/login' component={LoginForm} />
+            <Route path='/books' component={Books} />
+            <Route path='/authors' component={Authors} />          
+          </Switch>
+        </Container>
       </Router >
-      </Container>
+      
     </Fragment>
   );
 

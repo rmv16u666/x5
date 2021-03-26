@@ -1,10 +1,11 @@
 import React from 'react';
+import { Grid } from 'semantic-ui-react';
 
 function Books() {
     return(
-        <div>
-            <h3>Books page</h3>
-        </div>
+        <Grid>
+            <Grid.Column><h3>Books page</h3></Grid.Column>
+        </Grid>
     );
 }
 
