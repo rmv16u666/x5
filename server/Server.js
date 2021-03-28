@@ -46,6 +46,14 @@ const root = {
 			return {token:TOKEN, userName:'admin'};
 		else
 			return error();
+	},
+	getAllBooks: () => {
+		return allBooks;
+	},
+	getAllAuthors: () => {
+		return allBooks
+			.map((item) => item.author)
+			.filter((item, i, self) => self.findIndex((selfItem) => selfItem.id === item.id) === i);
 	}
 };
 
