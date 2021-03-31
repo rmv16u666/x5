@@ -35,7 +35,7 @@ const BookCard = ({match: {params: {id}}}) => {
 
     return(
         <Container>
-            <Card>
+            <Card style={{width: '100%'}}>
                 <Card.Content 
                     header={title} 
                     meta={`${firstName} ${lastName}`} 
