@@ -26,6 +26,18 @@ type Comment {
     id: ID!
     author: String!
     text: String!
+    createdAt: String!
+}
+
+type PageInfo {
+    totalPages: Int!
+    totalCount: Int!
+    currentPage: Int!
+}
+
+type CommentsPagination {
+    pageInfo: PageInfo!
+    comments: [Comment]!
 }
 
 type Query {
@@ -33,4 +45,5 @@ type Query {
     getAllBooks: [Book]!
     getAllAuthors: [Author]!
     getBook(id: ID!): Book!
+    getComments(entityId: ID!, limit: Int!, offset: Int!): CommentsPagination!
 }
