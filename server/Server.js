@@ -21,7 +21,8 @@ const allBooks = [
 		author: {
 			id: '1',
 			firstName: 'Alex',
-			lastName: 'Kislov'
+			lastName: 'Kislov',
+			bio: 'Very interesting biography!'
 		},
 		comments: [
 			{
@@ -93,7 +94,8 @@ const allBooks = [
 		author: {
 			id: '1',
 			firstName: 'Alex',
-			lastName: 'Kislov'
+			lastName: 'Kislov',
+			bio: 'Very interesting biography!'
 		},
 		comments: []
 	}
@@ -110,8 +112,11 @@ const root = {
 		else
 			return error({message: 'Unauthorized error', statusCode: 401});
 	},
-	getAllBooks: () => {
-		return allBooks;
+	getAllBooks: ({authorId = null}) => {
+		if (!authorId) {
+			return allBooks;
+		}
+		return allBooks.filter((item) => item.author.id === authorId)
 	},
 	getAllAuthors: () => {
 		return allBooks
@@ -120,6 +125,9 @@ const root = {
 	},
 	getBook: ({id}) => {
 		return allBooks.find((item) => item.id === id);
+	},
+	getAuthor: ({id}) => {
+		return allBooks.map((item) => item.author).find((item) => item.id === id);
 	},
 	getComments: ({entityId, limit, offset}) => {
 		const searchResult = allBooks.find((item) => item.id === entityId);

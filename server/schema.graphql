@@ -12,6 +12,7 @@ type Author {
     id: ID!
     firstName: String!
     lastName: String!
+    bio: String
 }
 
 type Book {
@@ -19,6 +20,7 @@ type Book {
     title: String!
     description: String!
     author: Author!
+    year: Int!
     comments: [Comment]!
 }
 
@@ -42,8 +44,9 @@ type CommentsPagination {
 
 type Query {
     login(login: String!, password: String!): AuthToken!
-    getAllBooks: [Book]!
+    getAllBooks(authorId: ID): [Book]!
     getAllAuthors: [Author]!
     getBook(id: ID!): Book!
+    getAuthor(id: ID!): Author!
     getComments(entityId: ID!, limit: Int!, offset: Int!): CommentsPagination!
 }
